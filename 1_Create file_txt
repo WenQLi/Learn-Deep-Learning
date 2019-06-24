@@ -1,3 +1,4 @@
+################# 所有图片在同一个文件夹下的创建 ##################  
 import os  
 
 outer_path = 'F:\\LearnPytorch\\CatVsDog\\data\\train'   #这里是你的图片的目录  
@@ -13,3 +14,35 @@ if __name__ == '__main__':  ## 只有作为脚本文件直接执行的时候 才
         name = file + ' ' + str(int(i)) + '\n'  
         listText.write(name)  
     listText.close()  
+  
+  
+  ############不同类型的物品分别位于不同文件夹下的创建过程############
+  import os
+def generate(dir,label):
+	files = os.listdir(dir)
+	files.sort()
+	print('****************')
+	print('input :',dir)
+	print('start...')
+	listText = open('all_list.txt','a')
+	for file in files:
+		fileType = os.path.split(file)
+		if fileType[1] == '.txt':
+			continue
+		name = file + ' ' + str(int(label)) +'\n'
+		listText.write(name)
+	listText.close()
+	print('down!')
+	print('****************')
+
+
+outer_path = 'F:\\LearnPytorch\\CatVsDog\\data'   #这里是你的图片的目录
+
+
+if __name__ == '__main__':
+	i = 0
+	folderlist = os.listdir(outer_path)          #列举文件夹
+	for folder in folderlist:
+		generate(os.path.join(outer_path, folder),i)
+		i += 1
+
