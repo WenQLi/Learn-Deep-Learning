@@ -4,23 +4,23 @@ import os
 outer_path = 'F:\\LearnPytorch\\CatVsDog\\data\\train'   #这里是你的图片的目录  
 if __name__ == '__main__':  ## 只有作为脚本文件直接执行的时候 才可以运行
     i = 0  
-    folder = os.listdir(outer_path)          #列举文件夹  
-    listText = open('all_list_2.txt', 'a')  
-    for file in folder:  
-        if file[0:3] =='cat':  
+    folder = os.listdir(outer_path)          # 列举文件夹  folder 获取文件夹路径
+    listText = open('all_list_2.txt', 'a')   # 打开最后的txt文件
+    for file in folder:                      # 用for语句遍历文件夹下面所有文件
+        if file[0:3] =='cat':                # 提取图片文件前三个字符，如果是cat 则赋标签值为0
             i = 0  
-        if file[0:3] =='dog':  
+        if file[0:3] =='dog':                # 如果是dog，赋标签为1
             i = 1  
-        name = file + ' ' + str(int(i)) + '\n'  
-        listText.write(name)  
+        name = file + ' ' + str(int(i)) + '\n'   # 写入txt文件
+        listText.write(name)                 
     listText.close()  
   
   
   ############不同类型的物品分别位于不同文件夹下的创建过程############
   import os
-def generate(dir,label):
-	files = os.listdir(dir)
-	files.sort()
+def generate(dir,label):                      # 根据目录和标签进行生成操作的子函数
+	files = os.listdir(dir)          
+	files.sort()                           
 	print('****************')
 	print('input :',dir)
 	print('start...')
@@ -43,6 +43,6 @@ if __name__ == '__main__':
 	i = 0
 	folderlist = os.listdir(outer_path)          #列举文件夹
 	for folder in folderlist:
-		generate(os.path.join(outer_path, folder),i)
+		generate(os.path.join(outer_path, folder),i)  # 通过os.path.join拼接路径 传递给generate
 		i += 1
 
